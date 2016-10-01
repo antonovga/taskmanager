@@ -1,0 +1,14 @@
+language: ruby
+
+rvm:
+  - 2.3.1
+
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - cp config/secrets.yml.skel config/secrets.yml
+  - RAILS_ENV=test bundle exec rake db:setup
+
+script:
+  - bundle exec rake
+
+cache: bundler
