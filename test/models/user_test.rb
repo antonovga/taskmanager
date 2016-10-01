@@ -42,4 +42,11 @@ class UserTest < ActiveSupport::TestCase
 
     assert_equal user.tasks.count, 2
   end
+
+  test 'should destroy dependent tasks' do
+    user = User.create email: 'new_user@email.com', password: '123'
+    task = user.tasks.create name: 'task name'
+    user.destroy
+    assert_nil Task.find_by(id: task.id)
+  end
 end
