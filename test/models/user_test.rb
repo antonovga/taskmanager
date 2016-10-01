@@ -35,4 +35,11 @@ class UserTest < ActiveSupport::TestCase
 
     assert_equal user.role, 'user'
   end
+
+  test 'should have many tasks' do
+    user = User.create email: 'new_user@email.com', password: '123'
+    2.times { user.tasks.create name: 'task name' }
+
+    assert_equal user.tasks.count, 2
+  end
 end
