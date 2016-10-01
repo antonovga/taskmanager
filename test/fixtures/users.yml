@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+admin_user:
+  email: 1@1.ru
+  password: 11223344
+  role: 1
+
+regular_user:
+  email: 2@2.ru
+  password: 12345678
+  role: 0
