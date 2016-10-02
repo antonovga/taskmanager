@@ -29,6 +29,12 @@ class Web::TasksControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to tasks_path
   end
 
+  test 'should render #new if create failed' do
+    post tasks_url, params: { task: { name: '' } }
+
+    assert_template :new
+  end
+
   test 'should update task' do
     new_task_name = 'update name'
     patch task_url(@task), params: { task: { name: new_task_name } }
@@ -36,6 +42,12 @@ class Web::TasksControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to tasks_path
     assert_equal @task.name, new_task_name
+  end
+
+  test 'should render #new if update failed' do
+    patch task_url(@task), params: { task: { name: '' } }
+
+    assert_template :edit
   end
 
   test 'should destroy task' do

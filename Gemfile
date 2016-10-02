@@ -26,3 +26,8 @@ group :development do
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
 end
+
+group :test do
+  gem 'rails-controller-testing'
+  gem 'simplecov', require: false
+end
