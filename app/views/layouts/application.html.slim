@@ -12,5 +12,5 @@ html
     .container
       .row
         .col-md-2.col-md-offset-10
-          = link_to 'Logout', auth_sessions_destroy_path, method: :delete if current_user
+          = link_to 'Logout', auth_session_path, method: :delete if current_user
       = yield

@@ -11,6 +11,6 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
   def sign_in
-    post auth_sessions_path({ session: { email: users(:regular_user).email, password: '12345678' } })
+    post auth_session_path({ session: { email: users(:regular_user).email, password: '12345678' } })
   end
 end

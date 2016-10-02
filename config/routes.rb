@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   scope module: :web do
     namespace :auth do
-      resources :sessions, only: [:new, :create]
-      delete 'sessions/destroy'
+      resource :session, only: [:new, :create, :destroy]
     end
     resources :tasks, except: [:show]
   end
