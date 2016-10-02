@@ -24,6 +24,8 @@ class Web::Auth::SessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should log out user on #destroy' do
+    sign_in
+
     delete auth_session_path
 
     assert_equal session[:user_id], nil
