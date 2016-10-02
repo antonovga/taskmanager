@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     resources :tasks, except: [:show]
   end
 
-  root 'web/users/tasks#index'
+  root 'web/tasks#index'
 end
