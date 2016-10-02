@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TaskTest < ActiveSupport::TestCase
   def setup
-    @task = tasks(:valid_task)
+    @task = tasks(:regular_user_task)
   end
 
   test 'should not save without name' do

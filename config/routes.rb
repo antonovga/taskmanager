@@ -4,8 +4,8 @@ Rails.application.routes.draw do
       resources :sessions, only: [:new, :create]
       delete 'sessions/destroy'
     end
-    get 'pages/home'
+    resources :tasks, except: [:show]
   end
 
-  root 'web/pages#home'
+  root 'web/users/tasks#index'
 end

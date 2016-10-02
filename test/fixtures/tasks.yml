@@ -1,6 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-valid_task:
+admin_user_task:
   name: Task name
   description: Task description text
   user: :admin_user
+
+regular_user_task:
+  name: Task name
+  description: Task description text
+  user: :regular_user
