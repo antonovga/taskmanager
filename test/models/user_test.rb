@@ -49,4 +49,28 @@ class UserTest < ActiveSupport::TestCase
     user.destroy
     assert_nil Task.find_by(id: task.id)
   end
+
+  test 'should not store plain password' do
+    unencrypted_password = 'foobar'
+    @user.password = unencrypted_password
+    @user.save
+
+    assert_not_equal @user.password, unencrypted_password
+  end
+
+  test 'should authenticate against encrypted password' do
+    unencrypted_password = 'foobar'
+    @user.password = unencrypted_password
+    @user.save
+
+    assert @user.authenticate(unencrypted_password)
+
+    assert_not @user.authenticate('wrong password')
+  end
+
+  test 'should assign nil to #password if given nil as unencrypted password' do
+    @user.password = nil
+
+    assert_equal @user.password, nil
+  end
 end

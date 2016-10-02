@@ -2,10 +2,10 @@
 
 admin_user:
   email: 1@1.ru
-  password: 11223344
+  password: <%= BCrypt::Password.create('11223344', cost: BCrypt::Engine.cost) %>
   role: 1
 
 regular_user:
   email: 2@2.ru
-  password: 12345678
+  password: <%= BCrypt::Password.create('12345678', cost: BCrypt::Engine.cost) %>
   role: 0

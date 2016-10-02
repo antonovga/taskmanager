@@ -13,6 +13,9 @@ gem 'slim-rails'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'enumerize'
+gem 'simple_form'
+
+gem 'bcrypt', '~> 3.1.7'
 
 group :development, :test do
   gem 'puma', '~> 3.0'
