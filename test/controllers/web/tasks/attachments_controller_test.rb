@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class Web::Tasks::AttachmentsControllerTest < ActionDispatch::IntegrationTest
-  test 'should download attachcment file' do
+  test 'should download attachment file' do
     @task = tasks(:regular_user_task)
 
     File.open('test/fixtures/files/example.pdf') do |f|
