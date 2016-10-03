@@ -1,0 +1,11 @@
+.row
+  .col-md-12
+    h1 Show task
+.row
+  .col-md-12
+    = @task.name
+  .col-md-12
+    = @task.description
+  .col-md-12
+    = render_task_attachment(@task)
+

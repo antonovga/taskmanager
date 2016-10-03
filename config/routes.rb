@@ -3,7 +3,13 @@ Rails.application.routes.draw do
     namespace :auth do
       resource :session, only: [:new, :create, :destroy]
     end
-    resources :tasks, except: [:show]
+    resources :tasks do
+      scope module: :tasks do
+        resource :attachment, only: []do
+          get 'download'
+        end
+      end
+    end
   end
 
   root 'web/tasks#index'

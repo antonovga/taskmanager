@@ -1,8 +1,11 @@
 class Web::TasksController < Web::ApplicationController
-  before_action :set_task, only: [:edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
     @tasks = current_user.tasks.order(created_at: :desc)
+  end
+
+  def show
   end
 
   def new
