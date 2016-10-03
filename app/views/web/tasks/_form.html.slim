@@ -1,5 +1,7 @@
 = simple_form_for @task do |f|
   = f.input :name
   = f.input :description
+  = f.input :attachment
+  = f.input :remove_attachment, as: :boolean
 
   = f.button :submit

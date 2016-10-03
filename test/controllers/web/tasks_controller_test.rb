@@ -57,4 +57,78 @@ class Web::TasksControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to tasks_url
   end
+
+  test 'should save attachment on create' do
+    task_params = { task: { name: 'new_task_with_image',
+                            attachment: fixture_file_upload('files/pikachu.png', 'image/png')
+    }
+    }
+    post tasks_url, params: task_params
+
+    assert Task.last.attachment
+    assert File.exists?(Task.last.attachment.file.path)
+  end
+
+  test 'should save image on create' do
+    task_params = { task: { name: 'new_task_with_image',
+                            attachment: fixture_file_upload('files/pikachu.png', 'image/png')
+                          }
+                  }
+    post tasks_url, params: task_params
+
+    assert FileUtils.compare_file('test/fixtures/files/pikachu.png', Task.last.attachment.file.path)
+  end
+
+  test 'should save pdf on create' do
+    task_params = { task: { name: 'new_task_with_image',
+                            attachment: fixture_file_upload('files/example.pdf', 'image/png')
+                          }
+                  }
+    post tasks_url, params: task_params
+
+    assert FileUtils.compare_file('test/fixtures/files/example.pdf', Task.last.attachment.file.path)
+  end
+
+  test 'should save attachment on update' do
+    task_params = { task: { attachment: fixture_file_upload('files/pikachu.png', 'image/png') } }
+    patch task_url(@task), params: task_params
+
+    @task.reload
+
+    assert @task.attachment.file
+    assert File.exists?(@task.attachment.file.path)
+  end
+
+  test 'should save image on update' do
+    task_params = { task: { attachment: fixture_file_upload('files/pikachu.png', 'image/png') } }
+    patch task_url(@task), params: task_params
+
+    @task.reload
+
+    assert FileUtils.compare_file('test/fixtures/files/pikachu.png', @task.attachment.file.path)
+  end
+
+  test 'should save pdf on update' do
+    task_params = { task: { attachment: fixture_file_upload('files/example.pdf', 'image/png') } }
+    patch task_url(@task), params: task_params
+
+    @task.reload
+
+    assert FileUtils.compare_file('test/fixtures/files/example.pdf', @task.attachment.file.path)
+  end
+
+  test 'should remove attachment on update if remove_attachment checked' do
+    task_params = { task: { attachment: fixture_file_upload('files/example.pdf', 'image/png') } }
+    patch task_url(@task), params: task_params
+
+    @task.reload
+
+    assert Task.last.attachment.file
+
+    patch task_url(@task), params: { task: { remove_attachment: true } }
+
+    @task.reload
+
+    assert_not Task.last.attachment.file
+  end
 end
