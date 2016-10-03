@@ -1,5 +1,5 @@
 class Web::TasksController < Web::ApplicationController
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy, :start, :finish]
 
   def index
     @tasks = current_user.tasks.order(created_at: :desc)
@@ -37,6 +37,18 @@ class Web::TasksController < Web::ApplicationController
     @task.destroy
 
     redirect_to tasks_url
+  end
+
+  def start
+    @task.start!
+
+    redirect_to tasks_path
+  end
+
+  def finish
+    @task.finish!
+
+    redirect_to tasks_path
   end
 
   private

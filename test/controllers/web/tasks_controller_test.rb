@@ -131,4 +131,35 @@ class Web::TasksControllerTest < ActionDispatch::IntegrationTest
 
     assert_not Task.last.attachment.file
   end
+
+  test 'should change state to started' do
+    patch start_task_path(@task)
+
+    @task.reload
+
+    assert @task.started?
+    assert_redirected_to tasks_path
+  end
+
+  test 'should change state to finished' do
+    @task.start!
+
+    patch finish_task_path(@task)
+
+    @task.reload
+
+    assert @task.finished?
+    assert_redirected_to tasks_path
+  end
+
+  test 'should not change state to finished if task not started' do
+    patch finish_task_path(@task)
+
+    @task.reload
+
+    assert_not @task.finished?
+    assert @task.new?
+    assert_redirected_to tasks_path
+  end
+
 end

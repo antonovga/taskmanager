@@ -4,6 +4,10 @@ Rails.application.routes.draw do
       resource :session, only: [:new, :create, :destroy]
     end
     resources :tasks do
+      member do
+        patch 'start'
+        patch 'finish'
+      end
       scope module: :tasks do
         resource :attachment, only: []do
           get 'download'

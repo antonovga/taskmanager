@@ -7,7 +7,7 @@ class Task < ApplicationRecord
 
   mount_uploader :attachment, AttachmentUploader
 
-  aasm column: :state do
+  aasm column: :state, whiny_transitions: false do
     state :new, initial: true
     state :started
     state :finished
