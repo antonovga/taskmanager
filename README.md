@@ -7,6 +7,12 @@
 
 `2.3.1`
 
+##### Test data
+
+`bundle exec rake db:setup`
+
+`bundle exec rake test_data:tasks`
+
 ##### How to run the test suite
 
 `bundle exec rake`
