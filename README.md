@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/antonovga/taskmanager.svg?branch=master)](https://travis-ci.org/antonovga/taskmanager)
 
 # Taskmanager
+[taskmanager.adev.xyz](http://taskmanager.adev.xyz/)
 
 ##### Ruby version
 
@@ -12,4 +13,4 @@
 
 ##### Deployment instructions
 
-`cap deploy production`
+`cap production deploy`
