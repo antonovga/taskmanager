@@ -1,4 +1,4 @@
-class Web::Tasks::AttachmentsController < Web::ApplicationController
+class Web::User::Tasks::AttachmentsController < Web::User::ApplicationController
   def download
     @task = Task.find(params[:task_id])
 

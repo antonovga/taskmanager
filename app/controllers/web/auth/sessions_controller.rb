@@ -1,6 +1,4 @@
 class Web::Auth::SessionsController < Web::ApplicationController
-  skip_before_action :authenticate, only: [:new, :create]
-
   def new
     @session = Session.new
     redirect_to root_path if current_user

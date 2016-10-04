@@ -6,14 +6,14 @@ module Web::TasksHelper
     if MIME::Types.type_for(task.attachment.file.path).first&.media_type == 'image'
       image_tag task.attachment.url
     else
-      link_to task.attachment.file.filename, download_task_attachment_path(task)
+      link_to task.attachment.file.filename, download_user_task_attachment_path(task)
     end
   end
 
   def render_task_state_links(task)
     capture do
       task.aasm.events(permitted: true)&.map(&:name).each do |event|
-        concat link_to(event, url_for([event, task]), method: :patch)
+        concat link_to(event, url_for([event, :user, task]), method: :patch)
       end
     end
   end

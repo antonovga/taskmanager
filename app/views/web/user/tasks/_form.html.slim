@@ -1,4 +1,4 @@
-= simple_form_for @task do |f|
+= simple_form_for [:user, @task] do |f|
   = f.input :name
   = f.input :description
   = f.input :attachment

@@ -1,0 +1,32 @@
+.row
+  .col-md-12.text-center
+    h1 Tasks
+.row
+  .col-md-12
+    table.table.table-hover.table-condensed#tasks-list
+      thead
+        tr
+          th Id
+          th Name
+          th Description
+          th Created at
+          th State
+          th Change state
+          th
+          th
+          th
+
+      tbody
+        - @tasks.each do |task|
+          tr
+            td = task.id
+            td = task.name
+            td = truncate task.description
+            td = task.created_at.to_formatted_s(:short)
+            td
+              span.label.label-default
+                = task.state
+            td = render_task_state_links(task)
+            td = link_to 'Show', user_task_path(task)
+            td = link_to 'Edit', edit_user_task_path(task)
+            td = link_to 'Destroy', user_task_path(task), data: { confirm: 'Are you sure?' }, method: :delete
